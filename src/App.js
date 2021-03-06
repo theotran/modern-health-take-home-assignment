@@ -1,7 +1,19 @@
 import { useState, useEffect } from "react";
+import styled from "@emotion/styled";
 import "./App.css";
 import { _messages } from "./data.json";
 import { Message } from "./components/Message";
+
+const Container = styled.div`
+  height: 100vh;
+
+  .chatbox {
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: auto;
+    padding: 45px 30px;
+  }
+`;
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -32,9 +44,16 @@ function App() {
   // console.log("sorted messages", sortedAsc);
   console.log("current messages", currentMessages);
   return (
-    <div className="App">
+    <Container className="App">
       <h1>MODERN HEALTH TAKE HOME ASSIGNMENT</h1>
-    </div>
+      <div className="chatbox">
+        {currentMessages.map((m, idx) => {
+          return (
+            <Message key={idx} author={m.senderUuid} content={m.content} />
+          );
+        })}
+      </div>
+    </Container>
   );
 }
 
