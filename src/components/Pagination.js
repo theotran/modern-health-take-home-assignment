@@ -20,14 +20,14 @@ const PaginationNav = styled.nav`
       padding: 8px 0;
       background: #2c57df;
       margin: 0 2px;
+      cursor: pointer;
 
-      a {
+      .pagination-button {
         font-family: "Comfortaa", cursive;
         text-decoration: none;
         color: #fff;
         font-weight: bold;
-        height: 100%;
-        width: 100%;
+        margin: 0;
       }
     }
   }
@@ -49,10 +49,12 @@ export const Pagination = ({
     <PaginationNav>
       <ul className="pagination">
         {pageNumbers.map((number) => (
-          <li key={number} className={currentPage === number && "active"}>
-            <a onClick={() => paginate(number)} href="!#">
-              {number}
-            </a>
+          <li
+            key={number}
+            className={currentPage === number && "active"}
+            onClick={() => paginate(number)}
+          >
+            <p className="pagination-button">{number}</p>
           </li>
         ))}
       </ul>
